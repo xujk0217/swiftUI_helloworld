@@ -12,7 +12,6 @@ struct helloworldApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            imageUIView()
         }
     }
 }
