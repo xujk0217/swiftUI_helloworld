@@ -8,25 +8,37 @@
 import SwiftUI
 
 struct foodpickerView: View {
-    let food = ["漢堡", "沙拉", "披薩", "義大利麵", "火鍋"]
-    @State private var selectFood: String?
+    let food = Food.examples
+    @State private var selectFood: Food?
     var body: some View {
         VStack(spacing : 30) {
-            Image("dinner")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            Group{
+                if selectFood != .none{
+                    Text(selectFood!.image)
+                        .font(.system(size: 200))
+                        .minimumScaleFactor(0.1)
+                }else{
+                    Image("dinner")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
+            }
+            .lineLimit(1)
+            .frame(height: 250)
             Text("今天吃什麼？")
                 .font(.largeTitle)
                 .bold()
             
             if selectFood != .none{
-                Text(selectFood ?? "")
+                Text(selectFood!.name)
                     .font(.title)
                     .bold()
                     .foregroundStyle(Color.green)
-                    .id(selectFood)
+                    .id(selectFood!.name)
                     .transition(.scale.combined(with: .slide))
             }
+            
+            Spacer()
             
             Button(role: .none){
                 selectFood = food.shuffled().first
@@ -47,7 +59,7 @@ struct foodpickerView: View {
             
         }
         .padding()
-        .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
         .background(Color(.secondarySystemBackground))
         .animation(.easeInOut, value: selectFood)
         .buttonBorderShape(.capsule)
