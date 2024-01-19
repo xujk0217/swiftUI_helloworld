@@ -21,4 +21,5 @@ extension Animation{
 
 extension Color{
     static let bg2 = Color(.secondarySystemBackground)
+    static var groupBg: Color { Color(.systemGroupedBackground) }
 }

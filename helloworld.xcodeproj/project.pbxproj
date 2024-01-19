@@ -15,6 +15,7 @@
 		3F9D75632B57BD4B0022FA60 /* foodpicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D75622B57BD4B0022FA60 /* foodpicker.swift */; };
 		3F9D75652B58D4800022FA60 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D75642B58D4800022FA60 /* Food.swift */; };
 		3F9D75672B5987F10022FA60 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D75662B5987F10022FA60 /* Extensions.swift */; };
+		3F9D75692B5A77690022FA60 /* foodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D75682B5A77690022FA60 /* foodListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		3F9D75622B57BD4B0022FA60 /* foodpicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodpicker.swift; sourceTree = "<group>"; };
 		3F9D75642B58D4800022FA60 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		3F9D75662B5987F10022FA60 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3F9D75682B5A77690022FA60 /* foodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				3F812C8D2B553ADF00E5E451 /* ContentView.swift */,
 				3F9D75602B56E22C0022FA60 /* imageUI.swift */,
 				3F9D75622B57BD4B0022FA60 /* foodpicker.swift */,
+				3F9D75682B5A77690022FA60 /* foodListView.swift */,
 				3F812C8F2B553AE000E5E451 /* Assets.xcassets */,
 				3F812C912B553AE000E5E451 /* Preview Content */,
 			);
@@ -153,6 +156,7 @@
 				3F9D75672B5987F10022FA60 /* Extensions.swift in Sources */,
 				3F9D75632B57BD4B0022FA60 /* foodpicker.swift in Sources */,
 				3F9D75652B58D4800022FA60 /* Food.swift in Sources */,
+				3F9D75692B5A77690022FA60 /* foodListView.swift in Sources */,
 				3F9D75612B56E22C0022FA60 /* imageUI.swift in Sources */,
 				3F812C8C2B553ADF00E5E451 /* helloworldApp.swift in Sources */,
 			);
