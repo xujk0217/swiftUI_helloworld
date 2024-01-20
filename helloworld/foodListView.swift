@@ -13,6 +13,8 @@ struct foodListView: View {
     @State private var food = Food.examples
     @State private var selextedFood = Set<Food.ID>()
     
+    @State private var foodDetailHeight: CGFloat = FoodDetailSheetHeightKey.defaultValue
+    @State private var shouldshowsheet = false
     var isEditing: Bool {
         editMode?.wrappedValue == .active
     }
@@ -22,16 +24,32 @@ struct foodListView: View {
             titleBar
             
             List($food, editActions: .all, selection: $selextedFood){ $food in
-                Text(food.name)
+                
+                HStack {
+                    Text(food.name).padding(.vertical, 10)
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            if isEditing{
+                                return
+                            }
+                            shouldshowsheet = true
+                    }
+                    if isEditing{
+                        Image(systemName: "pencil")
+                            .font(.title2.bold())
+                            .foregroundColor(.accentColor)
+                    }
+                }
             }
             .listStyle(.plain)
             .padding(.horizontal)
         }
         .background(Color.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFloatButton)
-        .sheet(isPresented: .constant(true)){
+        .sheet(isPresented: $shouldshowsheet){
             
-            let food = food[0]
+            let food = food[4]
             let shouldVStack = textSize.isAccessibilitySize || food.image.count > 1
             
             let layout = shouldVStack ? AnyLayout(VStackLayout(spacing: 30)) : AnyLayout(HStackLayout(spacing: 30))
@@ -40,7 +58,7 @@ struct foodListView: View {
                 Text(food.image)
                     .font(.system(size: 100))
                     .lineLimit(1)
-                    .minimumScaleFactor(0.5)
+                    .minimumScaleFactor(shouldVStack ? 1 : 0.5)
                 
                 Grid(horizontalSpacing: 12, verticalSpacing: 12){
                     GridRow{
@@ -70,11 +88,29 @@ struct foodListView: View {
                     }.foregroundStyle(Color.black)
                 }
                 .padding()
+                .padding(.vertical)
                 .background(RoundedRectangle(cornerRadius: 8)).foregroundColor(Color(.systemBackground))
                 .transition(.move(edge: .top).combined(with: .opacity))
-
-            .presentationDetents([.medium])
+                .overlay{
+                    GeometryReader{ proxy in
+                        Color.clear.preference(key: FoodDetailSheetHeightKey.self, value: proxy.size.height)
+                    }
+                }
+                .onPreferenceChange(FoodDetailSheetHeightKey.self){
+                    foodDetailHeight = $0
+                }
+                .presentationDetents([.height(foodDetailHeight)])
             }
+        }
+    }
+}
+
+private extension foodListView{
+    struct FoodDetailSheetHeightKey: PreferenceKey{
+        static var defaultValue: CGFloat  = 300
+        
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = nextValue()
         }
     }
 }
